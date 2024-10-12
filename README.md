@@ -55,7 +55,7 @@ Siga os passos abaixo para rodar o projeto:
 4. Prepare seu ambiente:
 
 Crie um arquivo .env e sete as variaveis de ambiente do arquivo .env.example.
-Para o desafio, tenho as minhas credencias e estao no .example.
+Para o desafio, tenho minhas credencias q posso passar para a revisão do desafio.
 
 5. Execute o projeto:
    ```bash
