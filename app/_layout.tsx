@@ -1,37 +1,47 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider'
+import '@/global.css'
+import { useFonts } from 'expo-font'
+import * as SplashScreen from 'expo-splash-screen'
+import React, { useEffect } from 'react'
+import 'react-native-reanimated'
+import { Toaster } from 'sonner-native'
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { useColorScheme } from '@/hooks/useColorScheme'
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+import { useReactQueryDevTools } from '@dev-plugins/react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Stack } from 'expo-router'
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
+const queryClient = new QueryClient()
+
+SplashScreen.preventAutoHideAsync()
+
+export default function RootLayout({ children }: any) {
+  const colorScheme = useColorScheme()
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf')
+  })
+
+  useReactQueryDevTools(queryClient)
 
   useEffect(() => {
     if (loaded) {
-      SplashScreen.hideAsync();
+      SplashScreen.hideAsync()
     }
-  }, [loaded]);
+  }, [loaded])
 
   if (!loaded) {
-    return null;
+    return null
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
-  );
+    <QueryClientProvider client={queryClient}>
+      <GluestackUIProvider mode="light">
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(protected)" />
+        </Stack>
+        <Toaster />
+      </GluestackUIProvider>
+    </QueryClientProvider>
+  )
 }
