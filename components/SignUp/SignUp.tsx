@@ -8,7 +8,7 @@ import { Keyboard } from 'react-native'
 import { toast } from 'sonner-native'
 import { z } from 'zod'
 import { Form } from '../Form'
-import { Box, Button, ButtonSpinner, ButtonText, Text, VStack } from '../ui'
+import { Box, Button, ButtonSpinner, ButtonText, LinkText, Text, VStack } from '../ui'
 
 const schema = z
   .object({
@@ -59,7 +59,7 @@ export const SignUp = () => {
       <Box className="flex max-w-[440px] w-full flex-col justify-center items-center min-h-screen p-4">
         <Text className="text-2xl mb-6 font-bold text-gray-800">Sign up</Text>
         <Box className="w-full max-w-md mb-4">
-          <Form.Text onSubmitEditing={handleKeyPress} label="Email" placeholder="Your email" name="email" />
+          <Form.Text autoCapitalize="none" onSubmitEditing={handleKeyPress} label="Email" placeholder="Your email" name="email" />
         </Box>
         <Box className="w-full max-w-md mb-4">
           <Form.Passowrd onSubmitEditing={handleKeyPress} label="Password" placeholder="Your password" name="password" />
@@ -72,10 +72,8 @@ export const SignUp = () => {
             {isPending && <ButtonSpinner />}
             <ButtonText>Sign Up</ButtonText>
           </Button>
-          <Link className="w-full" href="/auth/login">
-            <Button variant="link" className="w-full">
-              <ButtonText>Sign In</ButtonText>
-            </Button>
+          <Link className="w-full text-center" href={{ pathname: '/auth/login' }}>
+            <LinkText>Sign in</LinkText>
           </Link>
         </VStack>
       </Box>

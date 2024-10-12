@@ -32,7 +32,7 @@ export const useAudioPlayer = () => {
 
   const playAudio = () => {
     if (audio) {
-      audio.playAsync()
+      audio.replayAsync()
     }
   }
 

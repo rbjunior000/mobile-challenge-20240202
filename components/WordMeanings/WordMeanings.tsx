@@ -1,23 +1,25 @@
 import { Meanings } from '@/services'
 import React from 'react'
-import { Box, Text } from '../ui'
+import { Box, Heading, Text } from '../ui'
 
-export const WordMeanings = (asd: { meanings: Meanings[] }) => {
+export const WordMeanings = (props: { meanings: Meanings[] }) => {
   return (
-    <>
-      {asd.meanings.map(({ partOfSpeech, definitions }, index) => (
+    <Box>
+      <Heading className="mr-auto">Meanings</Heading>
+
+      {props.meanings.map(({ partOfSpeech, definitions }, index) => (
         <Box key={index}>
-          <Text size="sm" className="capitalize">
-            {partOfSpeech}
-          </Text>
+          <Heading size="xs" className="capitalize">
+            As a {partOfSpeech}
+          </Heading>
           {definitions.map(({ example, definition }, index) => (
             <Box key={index}>
-              <Text size="xs">Example: {example}</Text>
-              <Text size="xs">Definition: {definition}</Text>
+              {example && <Text size="xs">Example: {example}</Text>}
+              {definition && <Text size="xs">Definition: {definition}</Text>}
             </Box>
           ))}
         </Box>
       ))}
-    </>
+    </Box>
   )
 }

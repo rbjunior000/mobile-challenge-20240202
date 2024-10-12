@@ -11,18 +11,17 @@ import {
   ActionsheetDragIndicatorWrapper,
   ActionsheetItem,
   ActionsheetScrollView,
-  Box,
   Button,
   ButtonIcon,
   ButtonSpinner,
   ButtonText,
   Center,
-  Heading,
   HStack,
   Progress,
   ProgressFilledTrack,
   Text
 } from '../ui'
+import { WordMeanings } from '../WordMeanings'
 import { NotFoundWord } from './WordNotFound'
 
 export const WordDetails = () => {
@@ -57,7 +56,7 @@ export const WordDetails = () => {
     if (oneAudioSelected) {
       fetchAudio(oneAudioSelected)
     }
-  }, [oneAudioSelected, data])
+  }, [oneAudioSelected])
 
   const currentData = data[currentIndex]
 
@@ -105,7 +104,7 @@ export const WordDetails = () => {
           <ActionsheetDragIndicatorWrapper>
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
-          <Center className="h-1/3 bg-pink-300 w-full">
+          <Center className="h-[100px] mb-2 bg-pink-300 w-full">
             <Text>{word?.name}</Text>
             <Text size="xs">{currentData?.phonetic}</Text>
           </Center>
@@ -125,21 +124,8 @@ export const WordDetails = () => {
                   </Progress>
                 </HStack>
               )}
-              <Heading className="mr-auto">Meanings</Heading>
-              <ActionsheetScrollView className="max-h-[50%]">
-                {currentData?.meanings.map(({ partOfSpeech, definitions }, index) => (
-                  <Box key={index}>
-                    <Text size="sm" className="capitalize">
-                      {partOfSpeech}
-                    </Text>
-                    {definitions.map(({ example, definition }, index) => (
-                      <Box key={index}>
-                        <Text size="xs">Example: {example}</Text>
-                        <Text size="xs">Definition: {definition}</Text>
-                      </Box>
-                    ))}
-                  </Box>
-                ))}
+              <ActionsheetScrollView className="max-h-[400px]">
+                <WordMeanings meanings={currentData?.meanings || []} />
               </ActionsheetScrollView>
               <ActionsheetItem>
                 <Button onPress={handlePrevious} isDisabled={currentIndex === 0}>

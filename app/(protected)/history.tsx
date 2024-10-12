@@ -1,5 +1,5 @@
 import { WordItem } from '@/components'
-import { Box, Heading, Text } from '@/components/ui'
+import { Box, Heading } from '@/components/ui'
 import { useHistory, useWordDetailsStore } from '@/hooks'
 import { Favorite, History } from '@/services'
 import { groupArray } from '@/utils'
@@ -25,7 +25,7 @@ const Item = ({ item }: { item: Favorite[] }) => {
 }
 
 const HistoryPage = () => {
-  const { data, isLoading } = useHistory()
+  const { data } = useHistory()
 
   const allData = (data?.pages?.flatMap((data) => data.map((word) => word)) || []) as History[]
 
@@ -42,7 +42,6 @@ const HistoryPage = () => {
         }}
         getItemCount={() => Math.ceil(allData.length / 3)}
         getItem={(groupedData, index) => groupedData[index]}
-        ListFooterComponent={isLoading ? <Text>Carregando...</Text> : null}
         initialNumToRender={10}
       />
     </SafeAreaView>

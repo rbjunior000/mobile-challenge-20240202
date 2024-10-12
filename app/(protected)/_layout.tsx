@@ -57,7 +57,7 @@ const ProtectedLayout = () => {
   }
 
   if (isLoading) {
-    return <Text>Loading...</Text>
+    return <Text>Loading Autentication...</Text>
   }
 
   return (

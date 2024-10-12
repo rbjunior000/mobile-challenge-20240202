@@ -38,7 +38,6 @@ const FavoritesPage = () => {
         keyExtractor={(item) => item.reduce((acc, { id }) => `${acc}-${id}`, '')}
         getItemCount={() => Math.ceil(data?.data.length / 3)}
         getItem={(groupedData, index) => groupedData[index]}
-        ListFooterComponent={isLoading ? <Text>Carregando...</Text> : null}
         initialNumToRender={10}
         ListEmptyComponent={() => <Text className="text-center">No favorites found</Text>}
       />

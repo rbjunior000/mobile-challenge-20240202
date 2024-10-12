@@ -14,7 +14,6 @@ import {
   InputField,
   InputIcon,
   InputSlot,
-  Link,
   LinkText,
   Text,
   VStack
@@ -22,7 +21,7 @@ import {
 import { SignInInput, userService } from '@/services'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
-import { useRouter } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 import { AlertTriangle, EyeIcon, EyeOffIcon, User } from 'lucide-react-native'
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -87,7 +86,7 @@ export const Login = () => {
           <Heading className="md:text-center" size="3xl">
             Log in
           </Heading>
-          <Text>Login to start using gluestack</Text>
+          <Text>Login to start using words app</Text>
         </VStack>
       </VStack>
       <VStack className="w-full">
@@ -102,7 +101,7 @@ export const Login = () => {
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
                 <Input>
-                  <InputField placeholder="Enter email" value={value} onChangeText={onChange} onBlur={onBlur} onSubmitEditing={handleKeyPress} returnKeyType="done" />
+                  <InputField autoCapitalize="none" placeholder="Enter email" value={value} onChangeText={onChange} onBlur={onBlur} onSubmitEditing={handleKeyPress} returnKeyType="done" />
                 </Input>
               )}
             />
@@ -153,10 +152,8 @@ export const Login = () => {
         </VStack>
         <HStack className="self-center" space="sm">
           <Text size="md">Don't have an account?</Text>
-          <Link href="/auth/signup">
-            <LinkText className="font-medium text-primary-700 group-hover/link:text-primary-600  group-hover/pressed:text-primary-700" size="md">
-              Sign up
-            </LinkText>
+          <Link href={{ pathname: '/auth/signup' }}>
+            <LinkText>Sign up</LinkText>
           </Link>
         </HStack>
       </VStack>
