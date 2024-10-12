@@ -10,7 +10,10 @@ Este projeto é um aplicativo mobile que lista palavras em inglês, utilizando a
 - **Backend:** Firebase
 - **Cache:** React Query
 - **Rotas:** Expo Router
-- **Persistência de dados locais:** AsyncStorage com uso de `useAsyncStorage`
+  <<<<<<< Updated upstream
+- # **Persistência de dados locais:** AsyncStorage com uso de `useAsyncStorage`
+- **Persistência de dados locais:** AsyncStorage com uso de `useAsyncStorage` e ReactQuery
+  > > > > > > > Stashed changes
 - **API:** Free Dictionary API
 - **Outras bibliotecas:**
   - Gluestack v2 para a estrutura de componentes
@@ -49,7 +52,12 @@ Siga os passos abaixo para rodar o projeto:
    npm install
    ```
 
-4. Execute o projeto:
+4. Prepare seu ambiente:
+
+Crie um arquivo .env e sete as variaveis de ambiente do arquivo .env.example.
+Para o desafio, tenho as minhas credencias e estao no .example.
+
+5. Execute o projeto:
    ```bash
    npx expo start
    ```
